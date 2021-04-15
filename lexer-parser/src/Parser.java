@@ -71,7 +71,7 @@ public class ExpressionTree {
         }
 
 
-        public double eval(SymbolTable table) {
+        public double eval(Lexeme table) {
             switch (this.type) {
                 case Lexer.FLOAT:
                 case Lexer.INT:
@@ -239,7 +239,7 @@ public class ExpressionTree {
 
 
 
-    public static Node parseAssignment(List<Token> tokenList, SymbolTable table) {
+    public static Node parseAssignment(List<Token> tokenList, Lexeme table) {
         Node n;
         parseIdentifier(tokenList.get(0));
         parseAssignmentOp(tokenList.get(1));
@@ -250,7 +250,7 @@ public class ExpressionTree {
     }
 
 
-    public static Node parseExprAssignment(List<Token> tokenList, SymbolTable table) {
+    public static Node parseExprAssignment(List<Token> tokenList, Lexeme table) {
         Node n;
         parseIdentifier(tokenList.get(0));
         parseExprOperator(tokenList.get(1));
@@ -262,7 +262,7 @@ public class ExpressionTree {
     }
 
 
-    public static Node parseTokens(List<Token> tokenList, SymbolTable table) {
+    public static Node parseTokens(List<Token> tokenList, Lexeme table) {
         Node n;
         if (tokenList.size() == 1) {
             if (tokenList.get(0).type.equals(Lexer.INT) || tokenList.get(0).type.equals(Lexer.FLOAT) ||
@@ -284,12 +284,12 @@ public class ExpressionTree {
         return n;
     }
 
-    public void parse(List<Token> tokenList, SymbolTable table) {
+    public void parse(List<Token> tokenList, Lexeme table) {
         root = parseTokens(tokenList, table);
     }
 
 
-    public double evaluate(SymbolTable table) {
+    public double evaluate(Lexeme table) {
         return root.eval(table);
     }
 
